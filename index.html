@@ -7,7 +7,7 @@
     <style>
         body
         {
-            background-color:#397097;
+            background-color:color-mix(in srgb, black 70%, purple 30%);
             display:flex;
             justify-content:center;
             align-items:center;
@@ -59,15 +59,19 @@
 
     </div>
     <div class="a">
-    <button onclick="start()">START</button>
+    <button id="sta" onclick="start()">START</button>
     <button>RESET</button>
         </div>
 </div>
 
 <script>
+    let isrunning = true;
+    let sta = document.getElementById("sta")
     function start()
     {
         const a=document.querySelector(".p");
+
+        isrunning = true
         let min= 1;
         let sec=59;
         let check="";
@@ -75,6 +79,8 @@
         a.style.fontSize="160px";
         a.innerHTML=min+":"+sec
        const stop=setInterval(()=>{
+        sta.style.display="none"
+
             sec=sec-1
             a.innerHTML=check+min+':'+c+sec;
             if(sec==0&&min!=0)
@@ -102,11 +108,15 @@
         },1000);
         setTimeout(()=>
         {
+            isrunning = false
             clearInterval(stop);
             a.style.fontSize="60px";
+            sta.style.display="block"
+
 
             a.innerHTML="Time for Break";
         },120000);
+        
 
 
     }
