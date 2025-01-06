@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Focus</title>
+    <link rel="icon" type="image/x-icon" href="download.jpeg">
+    <style>
+        body
+        {
+            background-color:#397097;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+        }
+        .time
+        {
+            width:500px;
+            height:400px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top:100px;
+        }
+        .t
+        {
+            height:70%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size:160px;
+
+        }
+        .a
+        {
+
+            display:flex;
+            justify-content:space-around;
+
+            height:30%
+        }
+        p
+        {
+            color:#ffffff;
+        }
+        button
+        {
+            color:#397097;
+            font-weight:bolder;
+            width:230px;
+            height:55px;
+            font-size:30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="time">
+    <div class="t">
+        <p class="p">2:00</p>
+
+    </div>
+    <div class="a">
+    <button onclick="start()">START</button>
+    <button>RESET</button>
+        </div>
+</div>
+
+<script>
+    function start()
+    {
+        const a=document.querySelector(".p");
+        let min= 1;
+        let sec=59;
+        let check="";
+        let c="";
+        a.style.fontSize="160px";
+        a.innerHTML=min+":"+sec
+       const stop=setInterval(()=>{
+            sec=sec-1
+            a.innerHTML=check+min+':'+c+sec;
+            if(sec==0&&min!=0)
+            {
+                min=min-1;
+                sec=60;
+                c="";
+                if(min<10)
+                {
+                    check="0";
+                }
+                if(sec<10)
+                {
+                    c="0";
+                    console.log("helllllo");
+                }
+
+            }
+           if(sec<11)
+           {
+               c="0";
+               console.log("helllllo");
+           }
+
+        },1000);
+        setTimeout(()=>
+        {
+            clearInterval(stop);
+            a.style.fontSize="60px";
+
+            a.innerHTML="Time for Break";
+        },120000);
+
+
+    }
+</script>
+</body>
+</html>
